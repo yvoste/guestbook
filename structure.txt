@@ -1,0 +1,21 @@
+├── bin/
+├── composer.json
+├── composer.lock
+├── config/
+├── public/
+├── src/
+├── symfony.lock
+├── var/
+└── vendor/
+
+Le répertoire bin/ contient le principal point d'entrée de la ligne de commande : console. Vous l'utiliserez tout le temps.
+
+Le répertoire config/ est constitué d'un ensemble de fichiers de configuration sensibles, initialisés avec des valeurs par défaut. Un fichier par paquet. Vous les modifierez rarement : faire confiance aux valeurs par défaut est presque toujours une bonne idée.
+
+Le répertoire public/ est le répertoire racine du site web, et le script index.php est le point d'entrée principal de toutes les ressources HTTP dynamiques.
+
+Le répertoire src/ héberge tout le code que vous allez écrire ; c'est ici que vous passerez la plupart de votre temps. Par défaut, toutes les classes de ce répertoire utilisent le namespace PHP App. C'est votre répertoire de travail, votre code, votre logique de domaine. Symfony n'a pas grand-chose à y faire.
+
+Le répertoire var/ contient les caches, les logs et les fichiers générés par l'application lors de son exécution. Vous pouvez le laisser tranquille. C'est le seul répertoire qui doit être en écriture en production.
+
+Le répertoire vendor/ contient tous les paquets installés par Composer, y compris Symfony lui-même. C'est notre arme secrète pour un maximum de productivité. Ne réinventons pas la roue. Vous profiterez des bibliothèques existantes pour vous faciliter le travail. Le répertoire est géré par Composer. N'y touchez jamais.
