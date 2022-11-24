@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h2>Give your feedback!</h2>
-
-	{% for conference in conferences %}
-		<a href="{{ path('conference', { id: conference.id }) }}">
-			<h4>{{ conference }}</h4>
-		</a>
-	{% endfor %}
+	<main>
+		<div class="py-5 text-center mt-5">
+			<ul class="list-inline">
+				{% for conference in conferences %}
+					<li class="list-inline-item">
+						<a href="{{ path('conference', { id: conference.id }) }}">
+							{{ conference }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</main>
 {% endblock %}

@@ -58,7 +58,7 @@ class CommentCrudController extends AbstractCrudController
 
                     return $filename;
                 }),
-            DateTimeField::new('date_add', 'Date de création'),
+            // DateTimeField::new('date_add', 'Date de création'),
         ];
     }
 

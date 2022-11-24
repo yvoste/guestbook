@@ -3,34 +3,48 @@
 
 {% block body %}
 
-	<h2>
-		Conference
-		{{ conference }}
-	</h2>
+	<main>
+		<div class="py-5 text-center mt-5">
+			<h2>
+				Conference
+				{{ conference }}
+			</h2>
+			<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+		</div>
 
-	{% if comments|length > 0 %}
-		<div>There are
-			{{ comments|length }}
-			comments.</div>
-		{% for comment in comments %}
-			{% if comment.getImgName %}
-				<img src="{{ asset('images/' ~ comment.getImgName) }}"/>
+
+		{% if comments|length > 0 %}
+			<div>There are
+				{{ comments|length }}
+				comments.</div>
+			{% for comment in comments %}
+				{% if comment.getImgName %}
+					<img src="{{ asset('images/' ~ comment.getImgName) }}"/>
+				{% endif %}
+
+				<h4>{{ comment.author }}</h4>
+				<small>
+					{{ comment.getDateAdd|format_datetime('medium', 'short') }}
+				</small>
+
+				<div id="pop">{{ comment.text|raw }}</div>
+			{% endfor %}
+			{% if previous >= 0 %}
+				<a href="{{ path('conference', { id: conference.id, offset: previous }) }}">Previous</a>
 			{% endif %}
-
-			<h4>{{ comment.author }}</h4>
-			<small>
-				{{ comment.getDateAdd|format_datetime('medium', 'short') }}
-			</small>
-
-			<p>{{ comment.text|raw }}</p>
-		{% endfor %}
-		{% if previous >= 0 %}
-			<a href="{{ path('conference', { id: conference.id, offset: previous }) }}">Previous</a>
+			{% if next < comments|length %}
+				<a href="{{ path('conference', { id: conference.id, offset: next }) }}">Next</a>
+			{% endif %}
+		{% else %}
+			<div>No comments have been posted yet for this conference.</div>
 		{% endif %}
-		{% if next < comments|length %}
-			<a href="{{ path('conference', { id: conference.id, offset: next }) }}">Next</a>
-		{% endif %}
-	{% else %}
-		<div>No comments have been posted yet for this conference.</div>
-	{% endif %}
+	</main>
+{% endblock %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+	<link rel="stylesheet" href={{ asset('css/detail.css')}}>
+{% endblock %}
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+	<script src="{{ asset('js/detail.js')}}"></script>
 {% endblock %}

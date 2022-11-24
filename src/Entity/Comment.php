@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Comment
 {
@@ -101,9 +102,14 @@ class Comment
         return $this->date_add;
     }
 
-    public function setDateAdd(\DateTimeInterface $date_add): self
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateAdd()
     {
-        $this->date_add = $date_add;
+        // L'événement ORM\PrePersist est déclenché lorsque l'objet est enregistré dans la base de données pour la toute première fois. 
+        //Lorsque cela se produit, la méthode setDateAdd() est appelée et la date et l'heure courantes sont utilisées pour la valeur de la propriété createdAt.
+        $this->date_add = new \DateTimeImmutable();
 
         return $this;
     }

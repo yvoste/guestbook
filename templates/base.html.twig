@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>GuestBook</title>
+		<title>GuestoBook</title>
 		<link
 		rel="shortcut icon" href="favicon.ico">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -15,19 +15,50 @@
 		{% endblock %}
 	</head>
 	<body>
-		<header>
-			<h1>
-				<a href="{{ path('homepage') }}">Guestbook</a>
-			</h1>
-			<ul>
-				{% for conference in conferences %}
-					<li>
-						<a href="{{ path('conference', { id: conference.id }) }}">{{ conference }}</a>
-					</li>
-				{% endfor %}
-			</ul>
-			<hr/>
-		</header>
-		{% block body %}{% endblock %}
+		<div class="container">
+			<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">Navbar</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Home</a>
+							</li>
+
+							{% for conference in conferences %}
+								<li class="nav-item">
+									<a class="nav-link" href="{{ path('conference', { id: conference.id }) }}">{{ conference }}</a>
+								</li>
+
+							{% endfor %}
+
+						</ul>
+					</div>
+				</nav>
+
+
+				{% block body %}{% endblock %}
+
+
+				<footer class="my-5 pt-5 text-muted text-center text-small">
+					<p class="mb-1">© 2017–2020 Company Name</p>
+					<ul class="list-inline">
+						<li class="list-inline-item">
+							<a href="#">Privacy</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#">Terms</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#">Support</a>
+						</li>
+					</ul>
+
+				</footer>
+			</div>
+		</body>
 	</body>
-</html>
+</html></body></html>
